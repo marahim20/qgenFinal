@@ -1,11 +1,7 @@
-import React from "react";
+import React from 'react'
 
-function login() {
-  return <React.Fragment>
-    <div>
-      11
-    </div>
-  </React.Fragment>;
+export default function login() {
+  return (
+    <div>login</div>
+  )
 }
-
-export default login;
