@@ -1,9 +1,7 @@
 import React from 'react'
 
-function register() {
+export default function Registeregister() {
   return (
-    <div>register</div>
+    <div>Register</div>
   )
 }
-
-export default register;
