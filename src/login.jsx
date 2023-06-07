@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Login() {
+
+  const {formDeets, setFormDeets} = useState({
+    username: "",
+    password: ""
+  })
+
   return (
     <div className=" bg-red-400 w-screen h-screen flex items-center justify-center p-4 font-mono">
       <div className="bg-yellow-400 w-full rounded-2xl h-full p-4">
@@ -13,14 +19,14 @@ export default function Login() {
               <form action="" className="flex flex-col w-full mt-4">
                 <input
                   type="text"
-                  name=""
+                  name="username"
                   id=""
                   className="bg-gray-200 rounded-2xl p-4 outline-none"
                   placeholder="Username"
                 />
                 <input
                   type="password"
-                  name=""
+                  name="password"
                   id=""
                   className="bg-gray-200 rounded-2xl p-4 mt-4 outline-none"
                   placeholder="Password"

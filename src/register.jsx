@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
+  let formDeet,
+    setFormDeets = useState({
+      email: "",
+      username: "",
+      password: "",
+    });
+
+  const handleForm = (event) => {
+    setFormDeets({
+      username: event.target.value.username,
+      email: event.target.value.email,
+      password: event.target.value.password,
+    });
+    handleAuth(formDeet);
+  };
+
   return (
     <div className=" bg-red-400 w-screen h-screen flex items-center justify-center p-4 font-mono">
       <div className="bg-yellow-400 w-full rounded-2xl h-full p-4">
@@ -17,12 +34,11 @@ export default function Login() {
                   className="bg-gray-200 rounded-2xl p-4 outline-none"
                   placeholder="Username"
                 />
-                
                 <input
                   type="text"
                   name="email"
                   id=""
-                  className="bg-gray-200 rounded-2xl p-4 mt-4 outline-none"
+                  className="bg-blue-200 rounded-2xl p-4 mt-4 outline-none"
                   placeholder="Email"
                 />
                 <input
@@ -34,9 +50,16 @@ export default function Login() {
                 />
                 <button
                   type="submit"
-                  className="bg-red-200 p-4 mt-4 rounded-2xl font-semibold"
+                  className="bg-yellow-200 p-4 mt-4 rounded-2xl font-semibold"
+                  onSubmit={handleForm}
                 >
                   Register
+                </button>
+                <button
+                  type="submit"
+                  className="bg-red-200 p-4 mt-4 rounded-2xl font-semibold"
+                >
+                  <Link to="/login">Login</Link>
                 </button>
               </form>
             </div>
