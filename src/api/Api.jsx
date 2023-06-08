@@ -33,7 +33,7 @@ const generateQuestions = async (inputText, qtype) => {
         const response = await openAI.createChatCompletion({
           model: 'gpt-3.5-turbo',
           messages: convo,
-          max_tokens: 500,
+          max_tokens: 1500,
         })
         // console.log(response);
   

@@ -67,9 +67,18 @@ export default function App() {
     const resp = await generateQuestions(promptLocal, qtypeLocal);
     setGeneratedResponse(resp);
     parseResponse(resp);
-    axios.post('/', Headers = {prompt, questionsGlobal, QType}).
-    then().
-    finally()
+    axios({
+      method:'post',
+      url:'http://127.0.0.1:8000/getdata',
+      data:{
+        prompt:prompt,
+        QType:QType,
+        questionsGlobal:questionsGlobal,
+      }
+    })
+    //.then()
+    //.finally()
+
   };
 
   const [generatedResponse, setGeneratedResponse] = useState("");

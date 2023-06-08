@@ -1,0 +1,61 @@
+{
+    "prompt": "Four hundred years ago, in the age of Witches, during a time of constant warfare; it was not uncommon for large numbers of people to clash with each other, exchange blows, and fight for their lives.\n\nBeatrice was not intimately familiar with the battlefield.\n\nShe was born and raised in the mansion of her mother, Echidna, a place free from human conflict. Even though the battles were far below her notice, they were still aggravating.\n\nAs time passed, she spent four hundred years with the book entrusted to her, during which the world outside was far from the madness of those days, although it could still be turbulent.\n\nYet, this once far distant madness was now close at hand.\n\n――That being, a struggle for countless lives all around the Imperial Capital.\n\n???: [Umm, I am worried. I am anxious.]\n\n???: [I know how you feel, Shuu. I guess Uu and the others should be leaving too?]\n\n???: [Au! Uau! Aa, u!]\n\n???: [Tha, that’s no good! Our job is to wait! We are waiting!]\n\nBeatrice, endeavoring to close her eyes and conserve energy, overheard the exchange.\n\nWhat could be heard were the voices of children she had become quite familiar with over the past few days―― Schult, Utakata, and Louis Arneb.\n\nBeatrice and the other children were settled behind the main camp―― where they waited in a tent that overlooked the battlefield from a hill, and although it sounded good to say that they protected the rear of the camp, at least Beatrice knew that this was just a pretense not to be expected of them.",
+    "questionsGlobal": [
+        {
+            "question": "1. Why was Beatrice not familiar with the battlefield?",
+            "answer": "Answer: a) She was born and raised in a place free from human conflict.",
+            "options": [
+                "a. She was born and raised in a place free from human conflict.",
+                "b. She was not interested in battles.",
+                "c. She was too afraid to witness conflicts.",
+                "d. She was physically unable to participate in battles."
+            ],
+            "showAnswer": false
+        },
+        {
+            "question": "2. How long did Beatrice spend with the book entrusted to her?",
+            "answer": "Answer: d) 400 years",
+            "options": [
+                "a. 100 years",
+                "b. 200 years",
+                "c. 300 years",
+                "d. 400 years"
+            ],
+            "showAnswer": false
+        },
+        {
+            "question": "3. Who were the voices that Beatrice overheard?",
+            "answer": "Answer: c) Children she had become familiar with over the past few days",
+            "options": [
+                "a. Soldiers in the battlefield",
+                "b. Other members of the mansion",
+                "c. Children she had become familiar with over the past few days",
+                "d. The enemy army"
+            ],
+            "showAnswer": false
+        },
+        {
+            "question": "4. Where were Beatrice and the other children settled?",
+            "answer": "Answer: b) In a tent that overlooked the battlefield from a hill",
+            "options": [
+                "a. In the middle of the battlefield",
+                "b. In a tent that overlooked the battlefield from a hill",
+                "c. In a palace of the emperor",
+                "d. In a village far away from the battlefield"
+            ],
+            "showAnswer": false
+        },
+        {
+            "question": "5. What was the pretense that the children were supposed to maintain?",
+            "answer": "Answer: c) They were supposed to wait and protect the rear of the camp.",
+            "options": [
+                "a. They were supposed to protect the soldiers on the battlefield.",
+                "b. They were supposed to attack the enemy army.",
+                "c. They were supposed to wait and protect the rear of the camp.",
+                "d. They were supposed to abandon the camp and escape from the battlefield."
+            ],
+            "showAnswer": false
+        }
+    ],
+    "QType": ""
+}
