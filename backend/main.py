@@ -1,5 +1,5 @@
 from typing import Optional
-from fastapi import FastAPI, UploadFile, Request
+from fastapi import FastAPI, JSONResponse, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from datetime import datetime
@@ -52,7 +52,22 @@ async def get_data(request: Request):
     q_type = data.get("QType")
 
     # Process the data as needed
-    # ...
+    # ... call functions from backend\database\db.py
 
     #print(data,request)
-    return {"message": f"Data received successfully \n {prompt}, \n{questions}, \n{q_type}"}
+    return {"message": "Data received successfully by fastapi"}
+
+
+# sent data to frontend
+@app.post("/senddata/")
+async def send_data(request: Request):
+
+    # ... call functions from backend\database\db.py
+    # Process the data as needed
+
+    data = chat_data
+
+    return JSONResponse(content=data)
+
+
+
