@@ -1,20 +1,6 @@
 import firebase_admin
 from firebase_admin import credentials, auth
 from firebase_admin import firestore
-import json 
-
-cred = credentials.Certificate("projssn-firebase-key.json")
-
-firebase_admin.initialize_app(cred)
-db = firestore.client()
-
-users_ref = db.collection('users')
-docs = users_ref.stream()
-
-for doc in docs:
-    print(f'{doc.id} => {doc.to_dict()}')
-
-
 
 
 # Create a user with email and password
