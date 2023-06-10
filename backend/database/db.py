@@ -16,11 +16,10 @@ def send_data_history(db, data):
     collection_ref = db.collection(collection_name)
 
     # Set the data in the document
-    collection_ref.add(data)
-    document_id = collection_ref.id
-    print('sample JSON file sent to Firestore successfully!')
+    time, document_id = collection_ref.add(data)
+    #print('sample JSON file sent to Firestore successfully! ',document_id.id, time)
 
-    return document_id
+    return document_id.id
 
 
 
@@ -46,7 +45,7 @@ def get_user_history(db, userID):
 
     # Get the data in the document
     doc = document_ref.get().to_dict()
-    print(doc)
+    #print(doc)
 
     # Get the chat history
     chat_history = doc['chat_history']
@@ -59,7 +58,7 @@ def get_user_history(db, userID):
 
         # Get the data in the document
         doc = document_ref.get().to_dict()
-        print(doc)
+        #print(doc)
 
         # Append the document data to chat_data
         chat_data.append(doc)

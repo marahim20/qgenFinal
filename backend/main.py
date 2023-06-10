@@ -39,9 +39,12 @@ app.add_middleware(
 
 
 class User(BaseModel):
-    id: Optional[str] = None
+    user_id: Optional[str] = None
     email: str
     password: str
+
+class UserLogin(BaseModel):
+    user_id: Optional[str] = None
 
 
 @app.get("/")
@@ -62,7 +65,7 @@ async def send_data(user: User):
 
 @app.post("/getdata/")
 async def get_data(request: Request):
-    print(request)
+    #print(request)
     data = await request.json()
     user_id = data.get("user_id")
     prompt = data.get("prompt")
@@ -82,12 +85,15 @@ async def get_data(request: Request):
 
 # sent data to frontend
 @app.post("/senddata/")
-async def send_data(user: User):
-    
-    data = await user.json()
-    user.id = data.get("id")
+async def send_data(user: UserLogin):
 
-    chat_data = get_user_history(db, user.id)
+    print("myrr sentdata",user)
+    data = json.loads(user.json())
+    id = data.get("user_id")
+
+    #print("hello",id)
+
+    chat_data = get_user_history(db, id)
 
     return JSONResponse(content = chat_data)
 
