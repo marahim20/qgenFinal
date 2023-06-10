@@ -1,12 +1,12 @@
 import firebase_admin
 from firebase_admin import credentials, auth
 from firebase_admin import firestore
+import json 
 
 # Sending generated data to history collection
-def send_data_history(db, json_file_path):
-    # Read the JSON file from FastAPI
-    with open(json_file_path) as file:
-        data = json.load(file)
+def send_data_history(db, data):
+
+    #print(data)
 
     # Specify the collection
     collection_name = 'history'
