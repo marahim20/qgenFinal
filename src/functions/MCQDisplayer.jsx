@@ -12,9 +12,16 @@ const MCQDisplayer = (questions) => {
             <div className="z-0">{quest.question}</div>
           </div>
           {quest.options.map((option, index1) => {
-            return <div key={index1}>{option}</div>;
+            const trueAnswer = quest.answer.substring(11);
+            const option1 = option.substring(3);
+            const optionClass =
+              trueAnswer === option1 ? "hover:text-green-700" : "";
+            return (
+              <div key={index1} className={optionClass}>
+                {option}
+              </div>
+            );
           })}
-          <div className="text-green-700">{quest.answer}</div>
         </div>
       </React.Fragment>
     );
