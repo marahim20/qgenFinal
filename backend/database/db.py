@@ -1,5 +1,9 @@
+import firebase_admin
+from firebase_admin import credentials, auth
+from firebase_admin import firestore
+
 # Sending generated data to history collection
-def send_data_history(json_file_path):
+def send_data_history(db, json_file_path):
     # Read the JSON file from FastAPI
     with open(json_file_path) as file:
         data = json.load(file)
@@ -21,7 +25,7 @@ def send_data_history(json_file_path):
 
 
 # Adding chat history to user collection
-def add_history_to_user(userID, document_id):
+def add_history_to_user(db, userID, document_id):
     # Get a reference to the document
     document_ref = db.collection('users').document(userID)
 
@@ -36,7 +40,7 @@ def add_history_to_user(userID, document_id):
 
 
 # Retrieving chat history from user, history collection and returning it to FastAPI
-def get_user_history(userID):
+def get_user_history(db, userID):
     # Get a reference to the document
     document_ref = db.collection('users').document(userID)
 
@@ -62,4 +66,3 @@ def get_user_history(userID):
 
     return chat_data
 
-# 
