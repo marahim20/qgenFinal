@@ -4,12 +4,13 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from datetime import datetime
-from database.db import send_data_history,add_history_to_user, get_user_history
-from auth import create_user_with_email_password, login_with_email_password, logout_user, send_password_reset_email
 import firebase_admin
 from firebase_admin import credentials, auth
 from firebase_admin import firestore
 import json 
+from database.db import send_data_history,add_history_to_user, get_user_history
+from authenticate import create_user_with_email_password, login_with_email_password, logout_user, send_password_reset_email
+
 
 cred = credentials.Certificate("projssn-firebase-key.json")
 
