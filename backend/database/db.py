@@ -1,22 +1,3 @@
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
-import json 
-
-cred = credentials.Certificate("projssn-firebase-key.json")
-
-firebase_admin.initialize_app(cred)
-db = firestore.client()
-
-users_ref = db.collection('users')
-docs = users_ref.stream()
-
-for doc in docs:
-    print(f'{doc.id} => {doc.to_dict()}')
-
-
-
-
 # Sending generated data to history collection
 def send_data_history(json_file_path):
     # Read the JSON file from FastAPI
@@ -25,7 +6,7 @@ def send_data_history(json_file_path):
 
     # Specify the collection
     collection_name = 'history'
-    document_id  = 'will be a random generated id by firestore'
+    document_id  = 'will be a random generated id by fire store'
 
     # Get a reference to the document
     collection_ref = db.collection(collection_name)

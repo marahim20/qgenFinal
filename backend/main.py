@@ -1,11 +1,23 @@
 from typing import Optional
-from fastapi import FastAPI, JSONResponse, Request
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from datetime import datetime
-from backend.database.db import send_data_history,add_history_to_user, get_user_history
-from backend.auth import create_user_with_email_password, login_with_email_password, logout_user, send_password_reset_email
+from database.db import send_data_history,add_history_to_user, get_user_history
+from auth import create_user_with_email_password, login_with_email_password, logout_user, send_password_reset_email
+import firebase_admin
+from firebase_admin import credentials, auth
+from firebase_admin import firestore
+import json 
 
+cred = credentials.Certificate("projssn-firebase-key.json")
+
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
+#users_ref = db.collection('users')
+#docs = users_ref.stream()
 
 app = FastAPI(debug=True)
 
@@ -35,7 +47,7 @@ async def root():
     return {"message": "Hello There!"}
 
 
-@app.post("/send_data/")
+'''@app.post("/send_data/")
 async def send_data(user: User):
     # Process the email and history data
     email = user.email
@@ -43,7 +55,7 @@ async def send_data(user: User):
 
     # Perform the email sending logic here
 
-    return {"message": f"Email sent to {email}. History: {history}"}
+    return {"message": f"Email sent to {email}. History: {history}"}'''
 
 
 @app.post("/getdata/")
@@ -106,3 +118,5 @@ async def login_user(user_login: User):
     
     # Return a response
     return {"message": f"User logged in successfully {user_login.id}"}
+
+
