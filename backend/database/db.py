@@ -25,7 +25,7 @@ def send_data_history(json_file_path):
 
     # Specify the collection
     collection_name = 'history'
-    document_id = 'userID'
+    document_id  = 'will be a random generated id by firestore'
 
     # Get a reference to the document
     collection_ref = db.collection(collection_name)
