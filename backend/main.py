@@ -8,14 +8,15 @@ import firebase_admin
 from firebase_admin import credentials, auth
 from firebase_admin import firestore
 import json 
-from database.db import send_data_history,add_history_to_user, get_user_history
-from authenticate import create_user_with_email_password, login_with_email_password, logout_user, send_password_reset_email
 
 
 cred = credentials.Certificate("projssn-firebase-key.json")
 
 firebase_admin.initialize_app(cred)
 db = firestore.client()
+
+from database.db import send_data_history,add_history_to_user, get_user_history
+from authenticate import create_user_with_email_password, login_with_email_password, logout_user, send_password_reset_email
 
 #users_ref = db.collection('users')
 #docs = users_ref.stream()
@@ -38,9 +39,12 @@ app.add_middleware(
 
 
 class User(BaseModel):
-    id: Optional[str] = None
+    user_id: Optional[str] = None
     email: str
     password: str
+
+class UserLogin(BaseModel):
+    user_id: Optional[str] = None
 
 
 @app.get("/")
@@ -61,7 +65,7 @@ async def send_data(user: User):
 
 @app.post("/getdata/")
 async def get_data(request: Request):
-    print(request)
+    #print(request)
     data = await request.json()
     user_id = data.get("user_id")
     prompt = data.get("prompt")
@@ -69,10 +73,10 @@ async def get_data(request: Request):
     q_type = data.get("QType")
 
     # Add the data to the database
-    doc_id = send_data_history(data)
+    doc_id = send_data_history(db, data)
 
     # Add the doc_id to the user's chat_history
-    add_history_to_user(user_id,doc_id)
+    add_history_to_user(db, user_id, doc_id)
 
     return {"message": "Data received successfully by fastapi"}
 
@@ -81,26 +85,29 @@ async def get_data(request: Request):
 
 # sent data to frontend
 @app.post("/senddata/")
-async def send_data(user: User):
-    
-    data = await user.json()
-    user.id = data.get("id")
+async def send_data(user: UserLogin):
 
-    chat_data = get_user_history(user.id)
+    print("myrr sentdata",user)
+    data = json.loads(user.json())
+    id = data.get("user_id")
+
+    #print("hello",id)
+
+    chat_data = get_user_history(db, id)
 
     return JSONResponse(content = chat_data)
 
 
 
 # Register a new user
-@app.post("/register")
+@app.post("/register/")
 async def register_user(user: User):
     # Extract email and password from the user object
     email = user.email
     password = user.password
     
     # create a user in Firebase
-    user.id = create_user_with_email_password(email, password)
+    user.id = create_user_with_email_password(db, email, password)
 
     # Return a response
     return {"message": f"User registered successfully {user.id}"}
@@ -108,14 +115,14 @@ async def register_user(user: User):
 
 
 # Login a user
-@app.post("/login")
+@app.post("/login/")
 async def login_user(user_login: User):
     # Extract email and password from the user_login object
     email = user_login.email
     password = user_login.password
     
     # login a user in Firebase
-    user_login.id = login_with_email_password(email, password)
+    user_login.id = login_with_email_password(db, email, password)
     
     # Return a response
     return {"message": f"User logged in successfully {user_login.id}"}
