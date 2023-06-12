@@ -5,12 +5,6 @@ import { useState } from "react";
 
 export default function App() {
   const [questionsGlobal, setQuestionsGlobal] = useState([
-    // {
-    //   question: "Question1",
-    //   answer: "answer1",
-    //   options: ["option1", "option2", "option3", "option4"],
-    //   showAnswer: false,
-    // },
   ]);
   const handleQuestionsUpdate = (updatedQuestions) => {
     setQuestionsGlobal(updatedQuestions);

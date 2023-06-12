@@ -15,7 +15,7 @@ const MCQDisplayer = (questions) => {
             const trueAnswer = quest.answer.substring(11);
             const option1 = option.substring(3);
             const optionClass =
-              trueAnswer === option1 ? "hover:text-green-700" : "";
+              trueAnswer === option1 ? "hover:text-green-700 cursor-pointer" : "";
             return (
               <div key={index1} className={optionClass}>
                 {option}
