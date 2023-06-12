@@ -1,6 +1,9 @@
 import React from "react";
 import generateQuestions from "../api/Api";
 import MCQParser from "../functions/MCQParser";
+import OpenEndedParser from "../functions/OpenEndedParser.jsx";
+import TrueOrFalseParser from "../functions/TrueOrFalseParser.jsx";
+import FillInTheBlanksParser from "../functions/FillInTheBlanksParser.jsx";
 import { useState } from "react";
 import {
   AiOutlineFilePdf,
@@ -36,15 +39,21 @@ export default function AppLeft(props) {
   const [isFilePicked, setIsFilePicked] = useState(false);
   const handlePromptSubmit = async (promptL, qtypeL) => {
     const Response = await generateQuestions(promptL, qtypeL);
-    // setGeneratedResponse(Response);
-    const mcqs = MCQParser(Response);
-    props.onQuestionsUpdate(mcqs);
-    // setQuestionsGlobal(mcqs);
-    // axios
-    //   .post("/", (Headers = { prompt, questionsGlobal, QType }))
-    //   .then()
-    //   .finally();
+    console.log(Response);
+    let parsedQuestions;
+    if (qtypeL === "Open-Ended") {
+      parsedQuestions = OpenEndedParser(Response);
+    } else if (qtypeL === "Fill in the Blanks") {
+      parsedQuestions = FillInTheBlanksParser(Response);
+    } else if (qtypeL === "True or False") {
+      parsedQuestions = TrueOrFalseParser(Response);
+    } else {
+      parsedQuestions = MCQParser(Response);
+    }
+    props.onQuestionsUpdate(parsedQuestions);
+    props.onQTypeUpdate(qtypeL);
   };
+
   return (
     <div
       id="left"
@@ -66,7 +75,7 @@ export default function AppLeft(props) {
         >
           {menuOptions.map((option) => {
             return (
-              <option key={option.key} value={option.key} className="bg-white">
+              <option key={option.key} value={option.value} className="bg-white">
                 {option.value}
               </option>
             );

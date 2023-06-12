@@ -1,7 +1,7 @@
 const MCQParser = (responseLocal) => {
   const questionsList = responseLocal.split("\n\n");
   const questions = [];
-  console.log(questionsList);
+  // console.log(questionsList);
 
   questionsList.forEach((element) => {
     const respT = element.split("\n");
