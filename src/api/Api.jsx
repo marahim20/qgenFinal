@@ -22,7 +22,7 @@ const generateQuestions = async (inputText, qtype) => {
       break;
     case "Fill in the Blanks":
       format_for_answer = `format:
-        1. Question
+        1. Question [word]
         Answer: [word]
         text:
         ${inputText}`;
@@ -61,7 +61,7 @@ const generateQuestions = async (inputText, qtype) => {
       let generatedQuestions = response.data.choices[0].message?.content;
       return generatedQuestions;
     };
-    const questions = generateQuestions1();
+    const questions = await generateQuestions1();
     return questions;
   } catch (error) {
     console.error(error);
