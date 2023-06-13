@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-
-  const {formDeets, setFormDeets} = useState({
+  const [formDeets, setFormDeets] = useState({
     username: "",
-    password: ""
-  })
+    password: "",
+  });
 
   return (
     <div className=" bg-red-400 w-screen h-screen flex items-center justify-center p-4 font-mono">
