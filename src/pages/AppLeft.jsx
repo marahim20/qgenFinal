@@ -18,7 +18,7 @@ export default function AppLeft(props) {
   const menuOptions = [
     { key: "Multiple Choice Questions", value: "MCQs" },
     { key: "Open Ended Questions", value: "Open-Ended" },
-    { key: "Fill in the blanks Questions", value: "Fill in the Blanks" },
+    // { key: "Fill in the blanks Questions", value: "Fill in the Blanks" },
     { key: "True or False Questions", value: "True or False" },
   ];
   const changeFileHandler = (event) => {

@@ -23,6 +23,7 @@ def create_user_with_email_password(db, email, password):
         # Set the data in the document
         collection_ref.set({
             'chat_history': chat_history
+            'password': password
         })  
         return user.uid
     except auth.AuthError as e:
@@ -33,16 +34,25 @@ def create_user_with_email_password(db, email, password):
 # Log in a user with email and password
 def login_with_email_password(db, email, password):
     try:
-        user = auth.get_user_by_email(email)
-        if user.email_verified:
-            auth.get_user_by_email_and_password(email, password)
-            return user.uid
+        user_ref = db.collection('users').document(email)
+        user_doc = user_ref.get()
+        
+        if user_doc.exists:
+            user_data = user_doc.to_dict()
+            stored_password = user_data.get('password')
+            
+            if stored_password == password:
+                return user_doc.id
+            else:
+                # Handle incorrect password
+                return None
         else:
-            # Handle email verification error
+            # Handle user not found
             return None
-    except auth.AuthError as e:
-        error_code = e.code
-        error_message = e.message
+    
+    except Exception as e:
+        # Handle any exceptions that occur during the process
+        return None
         # Handle the error
 
 # Log out a user
