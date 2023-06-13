@@ -39,12 +39,13 @@ app.add_middleware(
 
 
 class User(BaseModel):
-    user_id: Optional[str] = None
+    id: Optional[str] = None
     email: str
     password: str
 
 class UserLogin(BaseModel):
-    user_id: Optional[str] = None
+    email: str
+    password: str
 
 
 @app.get("/")
@@ -116,7 +117,7 @@ async def register_user(user: User):
 
 # Login a user
 @app.post("/login/")
-async def login_user(user_login: UserLogin):
+async def login_user(user_login: User):
     # Extract email and password from the user_login object
     email = user_login.email
     password = user_login.password
