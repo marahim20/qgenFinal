@@ -87,7 +87,7 @@ async def get_data(request: Request):
 @app.post("/senddata/")
 async def send_data(user: UserLogin):
 
-    print("myrr sentdata",user)
+    print("sentdata",user)
     data = json.loads(user.json())
     id = data.get("user_id")
 

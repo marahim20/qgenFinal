@@ -63,6 +63,7 @@ export default function AppLeft(props) {
         type="text"
         className="bg-gray-200 flex-1 rounded-2xl text-xl p-4 outline-none align-text-top overflow-y-auto"
         value={prompt}
+        placeholder="Enter your text here..."
         onChange={(e) => {
           setPrompt(e.target.value);
         }}
