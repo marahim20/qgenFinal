@@ -44,7 +44,6 @@ class User(BaseModel):
     password: str
 
 class UserLogin(BaseModel):
-    id: Optional[str] = None
     email: str
     password: str
 
