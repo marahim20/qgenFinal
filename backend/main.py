@@ -39,7 +39,7 @@ app.add_middleware(
 
 
 class User(BaseModel):
-    id: Optional[str] = None
+    user_id: Optional[str] = None
     email: str
     password: str
 
