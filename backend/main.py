@@ -45,6 +45,7 @@ class User(BaseModel):
 
 class UserLogin(BaseModel):
     user_id: Optional[str] = None
+    password: str
 
 
 @app.get("/")
