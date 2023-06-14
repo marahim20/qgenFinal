@@ -45,7 +45,6 @@ class User(BaseModel):
 
 class UserLogin(BaseModel):
     email: str
-    password: str
 
 
 @app.get("/")
@@ -90,7 +89,7 @@ async def send_data(user: UserLogin):
 
     print("sentdata",user)
     data = json.loads(user.json())
-    id = data.get("user_id")
+    id = data.get("email")
 
     #print("hello",id)
 
@@ -117,7 +116,7 @@ async def register_user(user: User):
 
 # Login a user
 @app.post("/login/")
-async def login_user(user_login: UserLogin):
+async def login_user(user_login: User):
     # Extract email and password from the user_login object
     email = user_login.email
     password = user_login.password
