@@ -13,12 +13,13 @@ import {
 } from "react-icons/ai";
 import { AwesomeButtonProgress } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
+import axios from "axios";
 
 export default function AppLeft(props) {
   const menuOptions = [
     { key: "Multiple Choice Questions", value: "MCQs" },
     { key: "Open Ended Questions", value: "Open-Ended" },
-    { key: "Fill in the blanks Questions", value: "Fill in the Blanks" },
+    // { key: "Fill in the blanks Questions", value: "Fill in the Blanks" },
     { key: "True or False Questions", value: "True or False" },
   ];
   const changeFileHandler = (event) => {
@@ -32,7 +33,7 @@ export default function AppLeft(props) {
   };
   const [isLoading, setIsLoading] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
-  const [QType, setQType] = useState("");
+  const [QType, setQType] = useState("MCQs");
   const [prompt, setPrompt] = useState("");
   const [generatedResponse, setGeneratedResponse] = useState("");
   const [selectedFile, setSelectedFile] = useState();
@@ -52,6 +53,22 @@ export default function AppLeft(props) {
     }
     props.onQuestionsUpdate(parsedQuestions);
     props.onQTypeUpdate(qtypeL);
+  };
+
+  const handleSave = async () => {
+    console.log("handleSaveCalled");
+    const email = localStorage.getItem("email");
+    const data = {
+      user_id: email,
+      prompt: prompt,
+      qtype: QType,
+      generatedResponse: generatedResponse,
+    };
+    const response = await axios.post("https://qgen-final-backend.vercel.app/getdata/", data);
+    console.log(response);
+  };
+
+  const handleExportPDF = async () => {
   };
 
   return (
@@ -107,12 +124,12 @@ export default function AppLeft(props) {
         </div>
         <div className="bg-blue-200 p-3 mt-4 gap-3 rounded-xl flex items-center justify-center">
           <div className="tooltip" data-tip="Save Response">
-            <button>
+            <button onClick={() => handleSave()}>
               <AiOutlineSave size="1.5rem" />
             </button>
           </div>
           <div className="tooltip" data-tip="Export as PDF">
-            <button>
+            <button onClick={() => handleExportPDF()}>
               <AiOutlineFilePdf size="1.5rem" />
             </button>
           </div>

@@ -41,6 +41,8 @@ const TrueFalseParser = (response) => {
             };
 
             questions.push(currentQuestion);
+        } else {
+            continue;
         }
     }
 
