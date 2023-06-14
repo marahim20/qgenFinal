@@ -68,6 +68,8 @@ export default function AppLeft(props) {
     console.log(response);
   };
 
+  const handleExportPDF = async () => {
+  };
 
   return (
     <div
@@ -127,7 +129,7 @@ export default function AppLeft(props) {
             </button>
           </div>
           <div className="tooltip" data-tip="Export as PDF">
-            <button>
+            <button onClick={() => handleExportPDF()}>
               <AiOutlineFilePdf size="1.5rem" />
             </button>
           </div>
