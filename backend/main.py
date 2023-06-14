@@ -117,7 +117,7 @@ async def register_user(user: User):
 
 # Login a user
 @app.post("/login/")
-async def login_user(user_login: User):
+async def login_user(user_login: UserLogin):
     # Extract email and password from the user_login object
     email = user_login.email
     password = user_login.password
