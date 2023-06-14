@@ -7,7 +7,7 @@ export default function Register() {
 
   const [formDeets, setFormDeets] = useState({
     email: "",
-    username: "",
+    id: "id_Register",
     password: "",
   });
 
@@ -23,21 +23,21 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "https://qgenfinal-backend.vercel.app/register",
+        "https://qgen-final-backend.vercel.app/register",
         formDeets
       );
 
       const { message } = response.data;
       console.log(message);
 
-      navigate("/login"); // Redirect to the login page after successful registration
+      navigate("/"); // Redirect to the login page after successful registration
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="bg-red-400 w-screen h-screen flex items-center justify-center p-4 font-mono">
+    <div className="bg-red-400 w-screen h-screen flex items-center justify-center p-4 font-mono text-black">
       <div className="bg-yellow-400 w-full rounded-2xl h-full p-4">
         <div className="bg-blue-400 w-full h-full rounded-2xl p-4 ">
           <div className="bg-white w-full rounded-2xl h-full p-4 flex items-center justify-center">
