@@ -31,6 +31,7 @@ export default function AppLeft(props) {
     const formData = new FormData();
     formData.append("File", selectedFile);
   };
+  const [history, setHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [QType, setQType] = useState("MCQs");
@@ -51,6 +52,7 @@ export default function AppLeft(props) {
     } else {
       parsedQuestions = MCQParser(Response);
     }
+    setGeneratedResponse(parsedQuestions);
     props.onQuestionsUpdate(parsedQuestions);
     props.onQTypeUpdate(qtypeL);
   };
@@ -114,7 +116,8 @@ export default function AppLeft(props) {
           </div>
           <div className="tooltip" data-tip="History">
             <button
-              onClick={() => {
+              onClick={async () => {
+
                 setShowHistory(true);
               }}
             >
@@ -152,6 +155,6 @@ export default function AppLeft(props) {
           </AwesomeButtonProgress>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
