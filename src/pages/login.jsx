@@ -66,12 +66,9 @@ export default function Login() {
                 >
                   Login
                 </button>
-                <button
-                  className="bg-red-200 p-4 mt-4 rounded-2xl font-semibold"
-                  onClick={() => navigate("/register")}
-                >
+                <Link to="/register" className="bg-red-200 p-4 mt-4 rounded-2xl font-semibold flex items-center justify-center">
                   Register
-                </button>
+                </Link>
               </form>
             </div>
           </div>

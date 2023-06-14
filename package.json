@@ -13,6 +13,8 @@
     "@babel/types": "^7.22.5",
     "axios": "^1.4.0",
     "dotenv": "^16.1.4",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "openai": "^3.2.1",
     "react": "^18.2.0",
     "react-awesome-button": "^7.0.5",
