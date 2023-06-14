@@ -39,12 +39,13 @@ app.add_middleware(
 
 
 class User(BaseModel):
-    user_id: Optional[str] = None
+    id: Optional[str] = None
     email: str
     password: str
 
 class UserLogin(BaseModel):
-    user_id: Optional[str] = None
+    email: str
+    password: str
 
 
 @app.get("/")

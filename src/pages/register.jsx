@@ -40,7 +40,7 @@ export default function Register() {
     <div className="bg-red-400 w-screen h-screen flex items-center justify-center p-4 font-mono">
       <div className="bg-yellow-400 w-full rounded-2xl h-full p-4">
         <div className="bg-blue-400 w-full h-full rounded-2xl p-4 ">
-          <div className="bg-white w-full rounded-2xl h-full p-4 flex items-center justify-center text-black">
+          <div className="bg-white w-full rounded-2xl h-full p-4 flex items-center justify-center">
             <div className="bg-gray-400 p-4 rounded-2xl flex flex-col items-center">
               <h1 className="text-2xl font-semibold">Enter your details</h1>
               <h2 className="text-sm">Welcome to QGen!</h2>
