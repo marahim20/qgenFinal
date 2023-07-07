@@ -3,8 +3,8 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import App from "./App";
 import "./index.css";
-import Login from "./routes/LoginPage";
-import Register from "./routes/RegisterPage";
+import Login from "./components/LoginPage";
+import Register from "./components/RegisterPage";
 import Loading from "./loading"
 
 function Main() {
