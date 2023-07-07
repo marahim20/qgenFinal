@@ -5,6 +5,7 @@ import App from "./App";
 import "./index.css";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Loading from "./loading"
 
 function Main() {
   useEffect(() => {
@@ -16,7 +17,8 @@ function Main() {
 
   return (
     <Routes>
-      <Route path="/" element={<App />} />
+      <Route path="/" element={<Loading />} />
+      <Route path="/app" element={<App />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Routes>

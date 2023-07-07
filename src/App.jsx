@@ -3,7 +3,7 @@ import MCQDisplayer from "./functions/MCQDisplayer";
 import OpenEndedDisplayer from "./functions/OpenEndedDisplayer.jsx";
 import TrueOrFalseDisplayer from "./functions/TrueOrFalseDisplayer.jsx";
 import FillInTheBlanksDisplayer from "./functions/FillInTheBlanksDisplayer.jsx";
-import AppLeft from "./pages/AppLeft";
+import AppLeft from "./components/AppLeft";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function App() {
@@ -25,8 +25,8 @@ export default function App() {
     console.log("updatedQType", updatedQType);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("email");
+  const handleLogout = async () => {
+    await localStorage.removeItem("email");
     window.location.reload();
   };
 

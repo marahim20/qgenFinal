@@ -33,7 +33,7 @@ export default function Register() {
       console.log(message);
 
       localStorage.setItem("email", formDeets.email);
-      navigate("/"); // Redirect to the login page after successful registration
+      navigate("/app"); // Redirect to the login page after successful registration
     } catch (error) {
       console.log(error);
     } finally {

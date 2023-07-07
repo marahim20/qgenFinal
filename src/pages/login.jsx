@@ -34,7 +34,7 @@ export default function Login() {
       console.log(message);
 
       localStorage.setItem("email", formDeets.email);
-      navigate("/"); // Redirect to the home page or any desired route
+      navigate("/app"); // Redirect to the home page or any desired route
     } catch (error) {
       console.log(error);
     } finally {

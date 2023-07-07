@@ -150,8 +150,9 @@ export default function AppLeft(props) {
             }}>
             {
               loading ?
-                <AiOutlineLoading3Quarters className="animate-spin" size={20} />
-                : "Generate"
+                (<div className="w-full h-full flex items-center justify-center px-8">
+                  <AiOutlineLoading3Quarters className="animate-spin" size={24} />
+                </div>) : "Generate"
             }
           </button>
         </div>
