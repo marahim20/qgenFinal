@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function Register() {
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const [formDeets, setFormDeets] = useState({
     email: "",
     id: "id_Register",
@@ -19,6 +20,7 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     try {
@@ -30,9 +32,12 @@ export default function Register() {
       const { message } = response.data;
       console.log(message);
 
+      localStorage.setItem("email", formDeets.email);
       navigate("/"); // Redirect to the login page after successful registration
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -73,7 +78,13 @@ export default function Register() {
                   type="submit"
                   className="bg-yellow-200 p-4 mt-4 rounded-2xl font-semibold"
                 >
-                  Register
+                  {
+                    loading ?
+                      (<div className="w-full h-full flex items-center justify-center">
+                        <AiOutlineLoading3Quarters className="animate-spin" size={24} />
+                      </div>)
+                      : "Register"
+                  }
                 </button>
                 <button
                   className="bg-red-200 p-4 mt-4 rounded-2xl font-semibold"

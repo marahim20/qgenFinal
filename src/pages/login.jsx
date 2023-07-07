@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function Login() {
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
   const [formDeets, setFormDeets] = useState({
     id: "idididid",
     email: "",
@@ -19,6 +21,7 @@ export default function Login() {
   };
 
   const handleLogin = async (event) => {
+    setLoading(true);
     event.preventDefault();
 
     try {
@@ -34,6 +37,8 @@ export default function Login() {
       navigate("/"); // Redirect to the home page or any desired route
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -66,7 +71,13 @@ export default function Login() {
                   type="submit"
                   className="bg-yellow-200 p-4 mt-4 rounded-2xl font-semibold"
                 >
-                  Login
+                  {
+                    loading ?
+                      (<div className="w-full h-full flex items-center justify-center">
+                        <AiOutlineLoading3Quarters className="animate-spin" size={24} />
+                      </div>)
+                      : "Login"
+                  }
                 </button>
                 <Link
                   to="/register"

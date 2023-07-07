@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import generateQuestions from "../api/Api";
 import MCQParser from "../functions/MCQParser";
 import OpenEndedParser from "../functions/OpenEndedParser.jsx";
@@ -10,6 +10,7 @@ import {
   AiOutlineHistory,
   AiOutlinePaperClip,
   AiOutlineSave,
+  AiOutlineLoading3Quarters,
 } from "react-icons/ai";
 import { AwesomeButtonProgress } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
@@ -31,8 +32,8 @@ export default function AppLeft(props) {
     const formData = new FormData();
     formData.append("File", selectedFile);
   };
+  const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [QType, setQType] = useState("MCQs");
   const [prompt, setPrompt] = useState("");
@@ -40,6 +41,10 @@ export default function AppLeft(props) {
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
   const handlePromptSubmit = async (promptL, qtypeL) => {
+    console.log("handlePromptSubmitCalled");
+    setLoading(true);
+    // props.onSetLoading(true);
+
     const Response = await generateQuestions(promptL, qtypeL);
     console.log(Response);
     let parsedQuestions;
@@ -55,8 +60,10 @@ export default function AppLeft(props) {
     setGeneratedResponse(parsedQuestions);
     props.onQuestionsUpdate(parsedQuestions);
     props.onQTypeUpdate(qtypeL);
-  };
 
+    setLoading(false);
+    // props.onSetLoading(false);
+  };
   const handleSave = async () => {
     console.log("handleSaveCalled");
     const email = localStorage.getItem("email");
@@ -69,10 +76,8 @@ export default function AppLeft(props) {
     const response = await axios.post("https://qgen-final-backend.vercel.app/getdata/", data);
     console.log(response);
   };
-
   const handleExportPDF = async () => {
   };
-
   return (
     <div
       id="left"
@@ -138,21 +143,17 @@ export default function AppLeft(props) {
           </div>
         </div>
         <div className="bg-yellow-200 mt-4 rounded-xl flex items-center justify-center">
-          <AwesomeButtonProgress
-            type="primary"
-            ripple
-            loadingLabel="Generating"
-            onPress={async (event, release) => {
-              setIsLoading(true);
+          <button
+            className="bg-yellow-200 p-3 gap-3 rounded-xl flex items-center justify-center"
+            onClick={async () => {
               await handlePromptSubmit(prompt, QType);
-              setIsLoading(false);
-              release();
-            }}
-            resultLabel="Generated!"
-            style={{ backgroundColor: "#FEF08A", color: "#FEF08A" }}
-          >
-            Generate!
-          </AwesomeButtonProgress>
+            }}>
+            {
+              loading ?
+                <AiOutlineLoading3Quarters className="animate-spin" size={20} />
+                : "Generate"
+            }
+          </button>
         </div>
       </div>
     </div >
