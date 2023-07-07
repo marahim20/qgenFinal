@@ -6,16 +6,16 @@ import Register from "./components/RegisterPage";
 import Loading from "./loading";
 
 function AppRoutes() {
-    useEffect(() => {
-        const email = localStorage.getItem("email");
-        if (!email && window.location.pathname !== "/login") {
-            window.location.href = "/login";
-        }
-    }, []);
+    // useEffect(() => {
+    //     const email = localStorage.getItem("email");
+    //     if (!email && window.location.pathname !== "/login") {
+    //         window.location.href = "/login";
+    //     }
+    // }, []);
 
     return (
         <Routes>
-            <Route path="/" element={<Loading />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/app" element={<MainPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
