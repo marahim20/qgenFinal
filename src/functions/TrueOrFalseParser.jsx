@@ -27,7 +27,7 @@ const TrueFalseParser = (response) => {
 
     let currentQuestion = null;
 
-    for (let i = 0; i < lines.length; i += 2) {
+    for (let i = 0; i < lines.length; i += 1) {
         const line = lines[i];
 
         if (/^\d+\./.test(line)) {
