@@ -15,7 +15,7 @@ function AppRoutes() {
 
     return (
         <Routes>
-            <Route path="/" element={<Loading />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/app" element={<MainPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
