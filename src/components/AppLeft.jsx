@@ -76,7 +76,24 @@ export default function AppLeft(props) {
     const response = await axios.post("https://qgen-final-backend.vercel.app/getdata/", data);
     console.log(response);
   };
-  const handleExportPDF = async () => {
+  const [updatedQuestionsGlobal, setUpdatedQuestionsGlobal] = useState(props.questionsGlobal);
+
+  useEffect(() => {
+    setUpdatedQuestionsGlobal(props.questionsGlobal);
+  }, [props.questionsGlobal]);
+
+  const handleExportPDF = () => {
+    const jsonBlob = new Blob([JSON.stringify(updatedQuestionsGlobal)], { type: "application/json" });
+    const url = URL.createObjectURL(jsonBlob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "questions.json";
+    document.body.appendChild(link);
+    link.click();
+
+    URL.revokeObjectURL(url);
+    document.body.removeChild(link);
   };
   return (
     <div
@@ -106,7 +123,7 @@ export default function AppLeft(props) {
             );
           })}
         </select>
-        <div className="bg-red-200 p-3 mt-4 gap-3 rounded-xl flex items-center justify-center">
+        {/* <div className="bg-red-200 p-3 mt-4 gap-3 rounded-xl flex items-center justify-center">
           <input type="file" name="file" onChange={changeFileHandler} hidden />
           <div className="tooltip" data-tip="Upload">
             <button
@@ -129,7 +146,7 @@ export default function AppLeft(props) {
               <AiOutlineHistory size="1.5rem" />
             </button>
           </div>
-        </div>
+        </div> */}
         <div className="bg-blue-200 p-3 mt-4 gap-3 rounded-xl flex items-center justify-center">
           <div className="tooltip" data-tip="Save Response">
             <button onClick={() => handleSave()}>

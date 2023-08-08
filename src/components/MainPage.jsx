@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import MCQDisplayer from "../functions/MCQDisplayer";
 import OpenEndedDisplayer from "../functions/OpenEndedDisplayer.jsx";
 import TrueOrFalseDisplayer from "../functions/TrueOrFalseDisplayer.jsx";
@@ -41,6 +41,7 @@ export default function MainPage() {
                 onSetLoading={handleLoading}
                 onQuestionsUpdate={handleQuestionsUpdate}
                 onQTypeUpdate={handleQTypeUpdate}
+                questionsGlobal={questionsGlobal} // Pass the questionsGlobal state as a prop
               />
               <div
                 id="right"
