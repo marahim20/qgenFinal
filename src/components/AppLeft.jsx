@@ -83,12 +83,16 @@ export default function AppLeft(props) {
   }, [props.questionsGlobal]);
 
   const handleExportPDF = () => {
-    const jsonBlob = new Blob([JSON.stringify(updatedQuestionsGlobal)], { type: "application/json" });
-    const url = URL.createObjectURL(jsonBlob);
+    const formattedData = updatedQuestionsGlobal.map((entry, index) => {
+      return `${index + 1}. ${entry.question}\nAnswer: ${entry.answer}`;
+    }).join("\n\n");
+
+    const textBlob = new Blob([formattedData], { type: "text/plain" });
+    const url = URL.createObjectURL(textBlob);
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = "questions.json";
+    link.download = "questions_and_answers.txt"; // Change the filename and extension
     document.body.appendChild(link);
     link.click();
 
@@ -153,7 +157,7 @@ export default function AppLeft(props) {
               <AiOutlineSave size="1.5rem" />
             </button>
           </div>
-          <div className="tooltip" data-tip="Export as PDF">
+          <div className="tooltip" data-tip="Export Data">
             <button onClick={() => handleExportPDF()}>
               <AiOutlineFilePdf size="1.5rem" />
             </button>
