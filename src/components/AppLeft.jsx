@@ -84,7 +84,7 @@ export default function AppLeft(props) {
 
   const handleExportPDF = () => {
     const formattedData = updatedQuestionsGlobal.map((entry, index) => {
-      return `${index + 1}. ${entry.question}\nAnswer: ${entry.answer}`;
+      return `${entry.question}\nAnswer: ${entry.answer}`;
     }).join("\n\n");
 
     const textBlob = new Blob([formattedData], { type: "text/plain" });
