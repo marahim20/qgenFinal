@@ -74,7 +74,30 @@ export default function AppLeft(props) {
       generatedResponse: generatedResponse,
     };
     const response = await axios.post("https://qgen-final-backend.vercel.app/getdata/", data);
-    console.log(response);
+    console.log("History saved", response);
+    // Send POST request to save the data
+    const saveResponse = await axios.post("https://qgen-final-backend.vercel.app/getdata/", data);
+    console.log("Save Response:", saveResponse);
+
+    // Send POST request to retrieve the JSON data
+    const requestData = {
+      email: email,
+    };
+    const retrieveResponse = await axios.post("https://qgen-final-backend.vercel.app/senddata/", requestData);
+    console.log("Retrieve Response:", retrieveResponse);
+
+    // Create a blob with the JSON data
+    const jsonBlob = new Blob([JSON.stringify(retrieveResponse.data)], { type: "application/json" });
+
+    // Create a URL for the blob and initiate download
+    const url = URL.createObjectURL(jsonBlob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "data.json";
+    link.click();
+
+    // Clean up the URL object
+    URL.revokeObjectURL(url);
   };
   const [updatedQuestionsGlobal, setUpdatedQuestionsGlobal] = useState(props.questionsGlobal);
 
